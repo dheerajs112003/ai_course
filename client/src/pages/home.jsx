@@ -19,6 +19,7 @@ const linkifyText = (text = "") => {
 
 function Home() {
   const { getToken } = useAuth();
+  const API_URL = import.meta.env.VITE_API_URL;
   const [description, setDescription] = useState("");
   const [level, setLevel] = useState("Beginner");
   const [duration, setDuration] = useState("1-2 hours");
@@ -39,7 +40,7 @@ function Home() {
     try {
       const token = await getToken();
 
-      const res = await fetch("http://localhost:5000/api/course/generate", {
+      const res = await fetch(`${API_URL}/api/course/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +65,7 @@ function Home() {
 
   return (
     <div style={{ padding: "40px", maxWidth: "900px", margin: "auto" }}>
-      {/* 🔒 LOGGED OUT */}
+      {/* LOGGED OUT */}
       <SignedOut>
         <h2>Please login to generate a course</h2>
         <SignInButton mode="modal">
@@ -72,7 +73,7 @@ function Home() {
         </SignInButton>
       </SignedOut>
 
-      {/* 🔓 LOGGED IN */}
+      {/*LOGGED IN */}
       <SignedIn>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <UserButton afterSignOutUrl="/" />
