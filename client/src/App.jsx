@@ -37,7 +37,7 @@ const formatCurriculum = (text = "") => {
 
 function App() {
   const { getToken } = useAuth();
-
+const API_URL = import.meta.env.VITE_API_URL;
   const [description, setDescription] = useState("");
   const [level, setLevel] = useState("Beginner");
   const [duration, setDuration] = useState("1-2 hours");
@@ -65,8 +65,7 @@ function App() {
 
     try {
       const token = await getToken();
-
-      const res = await fetch("http://localhost:5000/api/course/generate", {
+const res = await fetch(`${API_URL}/api/course/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +101,7 @@ function App() {
     formData.append("question", question);
 
     try {
-      const res = await fetch("http://localhost:5000/api/course/ask", {
+      const res = await fetch(`${API_URL}/api/course/ask`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
