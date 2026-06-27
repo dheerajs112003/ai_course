@@ -18,14 +18,14 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://ai-course-seven-kappa.vercel.app",
     credentials: true,
   })
 );
 
 app.use(express.json());
 
-// ✅ Clerk auth middleware
+
 app.use(ClerkExpressWithAuth());
 
 // ================= ROUTES =================
@@ -33,13 +33,13 @@ app.use(ClerkExpressWithAuth());
 app.use("/api/auth", authRoutes);
 app.use("/api/course", courseRoutes);
 
-// 🧠 AI Chat (link + file + question)
+
 app.use("/api/course/ask", askRoutes);
 
 // ================= HEALTH =================
 
 app.get("/", (req, res) => {
-  res.send("AI Course Generator API is running 🚀");
+  res.send("AI Course Generator API is running ");
 });
 
 // ================= SERVER =================
