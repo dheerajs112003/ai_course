@@ -1,7 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const generateCourse = async (data) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch("http://localhost:5000/api/course/generate", {
+  const res = await fetch(`${API_URL}/api/course/generate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
